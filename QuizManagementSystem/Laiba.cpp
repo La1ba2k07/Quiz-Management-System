@@ -5,7 +5,8 @@
 using namespace std;
 
 /* ================= STUDENT LOGIN ================= */
-bool checkStudentLogin(string id, string password) {
+bool checkStudentLogin(string id, string password) 
+{
     ifstream fin;
     string line;
     string line1;
@@ -35,7 +36,8 @@ bool checkStudentLogin(string id, string password) {
 }
 
 /* ================= QUIZ ================= */
-void takeQuiz() {
+void takeQuiz() 
+{
     ifstream fin;
     fin.open(("Questions.txt"));
     if (!fin) {
@@ -50,14 +52,16 @@ void takeQuiz() {
     int count =0;
     int score=0;
     
-    while( count<5 && getline(fin,question)){
+    while( count<5 && getline(fin,question))
+    {
         cout<<"\n"<<question<<endl;
         getline(fin,options,',');
         cout<<options<<endl;
         cout<<"Enter your option:";
         cin>>User_option;
         
-        for(int i =0; i<User_option.length();i++){
+        for(int i =0; i<User_option.length();i++)
+        {
             if(User_option[i]>='a'&& User_option[i]<='z'){
             User_option[i]=User_option[i]-32;
             }
@@ -72,7 +76,8 @@ void takeQuiz() {
             cout<<"Your answer is correct."<<endl;
             score++;
         }
-        else{
+        else
+        {
             cout<<"Wrong!"<<endl;
             cout<<"Correct Answer is:"<<Answer<<endl;
 
@@ -93,13 +98,15 @@ void viewQuestions() {
     ifstream fin("Questions.txt");
     string line;
 
-    if (!fin) {
+    if (!fin) 
+    {
         cout << "Questions.txt not found!\n";
         return;
     }
 
     cout << "\n--- ALL QUESTIONS ---\n";
-    while (getline(fin, line)) {
+    while (getline(fin, line)) 
+    {
         cout << line << endl;
     }
 
@@ -107,9 +114,11 @@ void viewQuestions() {
 }
 
 /* ================= ADMIN ADD QUESTION ================= */
-void addQuestion() {
+void addQuestion() 
+{
     ofstream fout("Questions.csv", ios::app);
-    if (!fout) {
+    if (!fout)
+    {
         cout << "Error opening Questions.csv\n";
         return;
     }
@@ -140,7 +149,8 @@ void addQuestion() {
 }
 
 /* ================= ADMIN PANEL ================= */
-void adminPanel() {
+void adminPanel()
+{
     int choice;
     do {
         cout << "\n--- ADMIN PANEL ---\n";
@@ -155,19 +165,23 @@ void adminPanel() {
         else if (choice == 3) cout << "Admin Logged Out\n";
         else cout << "Invalid Choice!\n";
 
-    } while (choice != 3);
+    }
+        while (choice != 3);
 }
 
 /* ================= MAIN ================= */
-int main() {
+int main() 
+{
     int choice;
     cout << "===== QUIZ MANAGEMENT SYSTEM =====\n";
 
-    do {
+    do 
+    {
         cout << "\n1. Admin\n2. Student\n3. Exit\nEnter Choice: ";
         cin >> choice;
 
-        if (choice == 1) {
+        if (choice == 1) 
+        {
             string pass;
             cout << "Enter Admin Password: ";
             cin >> pass;
@@ -176,7 +190,8 @@ int main() {
             else
                 cout << "Wrong Admin Password!\n";
         }
-        else if (choice == 2) {
+        else if (choice == 2) 
+        {
             string id, pass;
             cout << "Student ID: ";
             cin >> id;
@@ -188,14 +203,18 @@ int main() {
             else
                 cout << "Invalid ID or Password!\n";
         }
-        else if (choice == 3) {
+        else if (choice == 3)
+        {
             cout << "Program Exit\n";
         }
-        else {
+        else 
+        {
             cout << "Invalid Option!\n";
         }
 
-    } while (choice != 3);
+    }
+        while (choice != 3);
 
     return 0;
+
 }
